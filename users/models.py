@@ -1,8 +1,17 @@
 from django.db import models
 from django.core.validators import RegexValidator
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager as AuthUserManager
 
 from app.utils import mask, unmask
+
+
+class UserQuerySet(models.QuerySet):
+    pass
+
+
+class UserManager(AuthUserManager):
+    def get_queryset(self):
+        return UserQuerySet(self.model)
 
 
 class User(AbstractUser):
@@ -48,3 +57,5 @@ class User(AbstractUser):
     @ip_address.setter
     def ip_address(self, value):
         self._ip_address = mask(value)
+
+    objects = UserManager()
