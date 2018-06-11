@@ -6,7 +6,14 @@ from app.utils import mask, unmask
 
 
 class UserQuerySet(models.QuerySet):
-    pass
+    def _filter_or_exclude(self, negate, *args, **kwargs):
+
+        for field in self.model.MASKING_FIELDS:
+            value = kwargs.pop(field, None)
+            if value is not None:
+                kwargs[f'_{field}'] = mask(value)
+
+        return super(UserQuerySet, self)._filter_or_exclude(negate, *args, **kwargs)
 
 
 class UserManager(AuthUserManager):
@@ -15,6 +22,8 @@ class UserManager(AuthUserManager):
 
 
 class User(AbstractUser):
+
+    MASKING_FIELDS = ['name', 'phone', 'date_of_birth', 'ip_address']
 
     phone_regex = RegexValidator(
         regex=r'^\+?[1-9]\d{1,14}$',
