@@ -11,3 +11,5 @@ class UserChangeForm(AuthUserChangeForm):
 @admin.register(User)
 class UserAdmin(AuthUserAdmin):
     form = UserChangeForm
+
+    list_display = ('username', 'name', 'phone', 'date_of_birth', 'ip_address')
