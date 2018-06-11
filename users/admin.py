@@ -11,6 +11,21 @@ class UserChangeForm(AuthUserChangeForm):
     date_of_birth = forms.DateField()
     ip_address = forms.GenericIPAddressField()
 
+    def __init__(self, *args, **kwargs):
+        super(UserChangeForm, self).__init__(*args, **kwargs)
+
+        model = self._meta.model
+        for field in model.MASKING_FIELDS:
+            self.fields[field].validators = model._meta.get_field(
+                f'_{field}'
+            ).validators
+
+    def clean(self, *args, **kwargs):
+        super(UserChangeForm, self).clean(*args, **kwargs)
+
+        for field in self._meta.model.MASKING_FIELDS:
+            setattr(self.instance, field, self.cleaned_data.get(field))
+
     class Meta:
         model = User
 
