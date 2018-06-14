@@ -2,6 +2,9 @@ from django.db import models
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import AbstractUser
 
+from app.fields import PseudonymizedField
+from app.utils import mask, unmask
+
 
 class User(AbstractUser):
 
@@ -10,7 +13,19 @@ class User(AbstractUser):
         message="Phone number must have the format: '+9999999999'.",
     )
 
-    name = models.CharField(max_length=128, blank=True)
-    phone = models.CharField(validators=[phone_regex], max_length=17, blank=True)
-    date_of_birth = models.DateField(blank=True, null=True)
-    ip_address = models.GenericIPAddressField(blank=True, null=True)
+    name = PseudonymizedField(
+        models.CharField, (mask, unmask), max_length=128, blank=True
+    )
+    phone = PseudonymizedField(
+        models.CharField,
+        (mask, unmask),
+        validators=[phone_regex],
+        max_length=16,
+        blank=True,
+    )
+    date_of_birth = PseudonymizedField(
+        models.DateField, (mask, unmask), blank=True, null=True
+    )
+    ip_address = PseudonymizedField(
+        models.GenericIPAddressField, (mask, unmask), blank=True, null=True
+    )
