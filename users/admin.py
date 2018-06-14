@@ -16,9 +16,12 @@ class UserChangeForm(AuthUserChangeForm):
 
         model = self._meta.model
         for field in model.MASKING_FIELDS:
+            self.fields[field].initial = getattr(self.instance, field)
             self.fields[field].validators = model._meta.get_field(
                 f'_{field}'
             ).validators
+
+        self.fields['date_of_birth'].widget = admin.widgets.AdminDateWidget()
 
     def clean(self, *args, **kwargs):
         super(UserChangeForm, self).clean(*args, **kwargs)
