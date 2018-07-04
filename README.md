@@ -12,29 +12,34 @@ For a more detailed explanation, check out the [blog post](https://www.cuttlesof
 ## Clone
 
 ```bash
-$ git clone https://github.com/cuttlesoft/django-pseudonymization-example.git
-$ cd django-pseudonymization-example
+git clone https://github.com/cuttlesoft/django-pseudonymization-example.git
+cd django-pseudonymization-example
 ```
 
 ### Checkout Example Branches
+
 [Example 1](https://github.com/cuttlesoft/django-pseudonymization-example/tree/properties), branch: `properties`
+
 ```bash
-$ git checkout properties
+git checkout properties
 ```
 
 [Example 2](https://github.com/cuttlesoft/django-pseudonymization-example/tree/fields), branch: `fields`
+
 ```bash
-$ git checkout fields
+git checkout fields
 ```
 
 ## Dependencies
 
 This example uses Django 2.0, which supports Python 3.4, 3.5, and 3.6. To properly run this example you'll need:
-1. Python 3.4 or greater
-2. [PostgreSQL](https://www.postgresql.org/)
-3. [pipenv](https://docs.pipenv.org/)
+
+1.  Python 3.4 or greater
+2.  [PostgreSQL](https://www.postgresql.org/)
+3.  [pipenv](https://docs.pipenv.org/)
 
 Install dependencies with `pipenv`
+
 ```bash
 $ pipenv install
 Creating a virtualenv for this project…
@@ -44,10 +49,10 @@ Installing dependencies from Pipfile.lock (5d8b51)…
   🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 3/3 — 00:00:09
 To activate this project's virtualenv, run the following:
  $ pipenv shell
-
 ```
 
 Activate virtual environment with `pipenv`
+
 ```bash
 $ pipenv shell
 Spawning environment shell (/bin/zsh). Use 'exit' to leave.
@@ -57,10 +62,10 @@ Spawning environment shell (/bin/zsh). Use 'exit' to leave.
 ## Initialize the Application
 
 ```bash
-$ createdb django_pseudonymization_example
-$ python manage.py makemigrations
-$ python manage.py migrate
-$ python manage.py createsuperuser
+createdb django_pseudonymization_example
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
 ```
 
 ## Start the Application
@@ -81,11 +86,12 @@ Quit the server with CONTROL-C.
 
 Our `mask`/`unmask` functions are intended for this example only, to enable demonstration of the application's handling of masking and unmasking. They do not sufficiently protect the data, as it is reasonably likely that someone accessing the data would be able to simply reverse the shifted characters, re-identifying users without any additional information present.
 
-
 ## License
+
 MIT
 
 ## Wanna Cuttle?
+
 - 🐙 [Cuttlesoft.com](https://cuttlesoft.com)
 - 🐦 [@cuttlesoft](https://twitter.com/cuttlesoft)
 - 📩 hello [at] cuttlesoft [dot] com
