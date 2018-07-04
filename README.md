@@ -1,4 +1,5 @@
 # Django Pseudonymization Example
+
 ## Data Masking via Properties
 
 This example Django app demonstrates an approach to pseudonymizing personal data using properties on the model.
@@ -6,11 +7,12 @@ This example Django app demonstrates an approach to pseudonymizing personal data
 ### Implementation
 
 The general steps involved in this approach:
-* Create a custom User class
-* Alter the model fields used for storage of values to be masked
-* Add getter/setter methods for interacting with the unmasked values
-* Create a custom User manager and queryset for basic filtering
-* Create custom User admin and admin form classes for management
+
+- Create a custom User class
+- Alter the model fields used for storage of values to be masked
+- Add getter/setter methods for interacting with the unmasked values
+- Create a custom User manager and queryset for basic filtering
+- Create custom User admin and admin form classes for management
 
 ...
 
@@ -19,19 +21,21 @@ For a more detailed explanation, check out the [blog post](https://www.cuttlesof
 ## Clone and Checkout
 
 ```bash
-$ git clone https://github.com/cuttlesoft/django-pseudonymization-example.git
-$ cd django-pseudonymization-example
-$ git checkout properties
+git clone https://github.com/cuttlesoft/django-pseudonymization-example.git
+cd django-pseudonymization-example
+git checkout properties
 ```
 
 ## Dependencies
 
 This example uses Django 2.0, which supports Python 3.4, 3.5, and 3.6. To properly run this example you'll need:
-1. Python 3.4 or greater
-2. [PostgreSQL](https://www.postgresql.org/)
-3. [pipenv](https://docs.pipenv.org/)
+
+1.  Python 3.4 or greater
+2.  [PostgreSQL](https://www.postgresql.org/)
+3.  [pipenv](https://docs.pipenv.org/)
 
 Install dependencies with `pipenv`
+
 ```bash
 $ pipenv install
 Creating a virtualenv for this project…
@@ -41,10 +45,10 @@ Installing dependencies from Pipfile.lock (5d8b51)…
   🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 3/3 — 00:00:09
 To activate this project's virtualenv, run the following:
  $ pipenv shell
-
 ```
 
 Activate virtual environment with `pipenv`
+
 ```bash
 $ pipenv shell
 Spawning environment shell (/bin/zsh). Use 'exit' to leave.
@@ -54,10 +58,10 @@ Spawning environment shell (/bin/zsh). Use 'exit' to leave.
 ## Initialize the Application
 
 ```bash
-$ createdb django_pseudonymization_properties
-$ python manage.py makemigrations
-$ python manage.py migrate
-$ python manage.py createsuperuser
+createdb django_pseudonymization_properties
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
 ```
 
 ## Start the Application
@@ -78,11 +82,12 @@ Quit the server with CONTROL-C.
 
 Our `mask`/`unmask` functions are intended for this example only, to enable demonstration of the application's handling of masking and unmasking. They do not sufficiently protect the data, as it is reasonably likely that someone accessing the data would be able to simply reverse the shifted characters, re-identifying users without any additional information present.
 
-
 ## License
+
 MIT
 
 ## Wanna Cuttle?
+
 - 🐙 [Cuttlesoft.com](https://cuttlesoft.com)
 - 🐦 [@cuttlesoft](https://twitter.com/cuttlesoft)
 - 📩 hello [at] cuttlesoft [dot] com
