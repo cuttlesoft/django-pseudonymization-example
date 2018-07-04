@@ -86,9 +86,14 @@ Quit the server with CONTROL-C.
 
 Our `mask`/`unmask` functions are intended for this example only, to enable demonstration of the application's handling of masking and unmasking. They do not sufficiently protect the data, as it is reasonably likely that someone accessing the data would be able to simply reverse the shifted characters, re-identifying users without any additional information present.
 
+## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct.
+
 ## License
 
-MIT
+This project is licensed under the MIT License - see the [LICENSE](LICENSE)
+file for details
 
 ## Wanna Cuttle?
 
